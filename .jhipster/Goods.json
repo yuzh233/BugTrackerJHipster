@@ -1,0 +1,48 @@
+{
+    "name": "Goods",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sku",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "GoodsType",
+            "fieldValues": "FINE,BAD"
+        },
+        {
+            "fieldName": "gmtCreate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "gmtModified",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "warehouse",
+            "otherEntityRelationshipName": "goods",
+            "relationshipName": "warehouse",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190713023322",
+    "entityTableName": "goods",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

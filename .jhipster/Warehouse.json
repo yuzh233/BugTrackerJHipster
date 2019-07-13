@@ -1,0 +1,43 @@
+{
+    "name": "Warehouse",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "stock",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "owner",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gmtCreate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "gmtModified",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190713023321",
+    "entityTableName": "warehouse",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

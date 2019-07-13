@@ -1,0 +1,9 @@
+{
+  "bugTrackerJHipsterApp": {
+    "GoodsType": {
+      "null": "",
+      "FINE": "FINE",
+      "BAD": "BAD"
+    }
+  }
+}
