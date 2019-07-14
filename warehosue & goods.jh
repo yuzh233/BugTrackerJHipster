@@ -1,0 +1,31 @@
+
+entity Warehouse {
+    name String
+    address String
+    stock Long
+    owner String
+    gmtCreate LocalDate
+    gmtModified LocalDate
+	deleted Integer
+}
+
+entity Goods {
+    name String
+    sku Long
+    type GoodsType
+    gmtCreate LocalDate
+    gmtModified LocalDate
+	deleted Integer
+}
+
+enum GoodsType {
+	FINE, BAD
+}
+
+relationship ManyToOne {
+	Goods{warehouse} to Warehouse
+}
+
+paginate all with pagination
+dto all with mapstruct
+service all with serviceImpl
