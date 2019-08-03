@@ -18,7 +18,21 @@ pipeline {
                 }
 
                 sh 'mvn --version'
+                sh 'mvn package -DMaven.test.skip=true'
                 sh 'echo "hello Jenkins!"'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing'
+            }
+        }
+
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying'
             }
         }
     }
