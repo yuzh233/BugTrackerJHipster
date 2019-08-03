@@ -57,8 +57,9 @@ public class GoodsServiceImpl implements GoodsService {
     @Transactional(readOnly = true)
     public Page<GoodsDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Goods");
-        return goodsRepository.findAll(pageable)
-            .map(goodsMapper::toDto);
+        Page<Goods> all = goodsRepository.findAll(pageable);
+        all.forEach(System.out::println);
+        return all.map(goodsMapper::toDto);
     }
 
 

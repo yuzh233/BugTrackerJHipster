@@ -1,14 +1,12 @@
 package bugtracker.yuzh.xyz.domain;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import bugtracker.yuzh.xyz.domain.enumeration.GoodsType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import bugtracker.yuzh.xyz.domain.enumeration.GoodsType;
 
 /**
  * A Goods.
@@ -44,7 +42,7 @@ public class Goods implements Serializable {
     private Integer deleted;
 
     @ManyToOne
-    @JsonIgnoreProperties("goods")
+    // @JsonIgnoreProperties("goods")
     private Warehouse warehouse;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -167,13 +165,14 @@ public class Goods implements Serializable {
     @Override
     public String toString() {
         return "Goods{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", sku=" + getSku() +
-            ", type='" + getType() + "'" +
-            ", gmtCreate='" + getGmtCreate() + "'" +
-            ", gmtModified='" + getGmtModified() + "'" +
-            ", deleted=" + getDeleted() +
-            "}";
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", sku=" + sku +
+            ", type=" + type +
+            ", gmtCreate=" + gmtCreate +
+            ", gmtModified=" + gmtModified +
+            ", deleted=" + deleted +
+            ", warehouse=" + warehouse +
+            '}';
     }
 }

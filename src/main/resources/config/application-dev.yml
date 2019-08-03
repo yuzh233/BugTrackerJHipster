@@ -45,9 +45,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./target/h2db/db/bugtrackerjhipster;DB_CLOSE_DELAY=-1
-    username: BugTrackerJHipster
-    password:
+    url: jdbc:mysql://localhost:3306/BugTrackerJHipster?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: harry@admin
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -56,7 +56,7 @@ spring:
       enabled: false
   jpa:
     database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-    database: H2
+    database: MYSQL
     show-sql: true
     properties:
       hibernate.id.new_generator_mappings: true

@@ -2,6 +2,8 @@ package bugtracker.yuzh.xyz.service.dto;
 import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
+
+import bugtracker.yuzh.xyz.domain.Warehouse;
 import bugtracker.yuzh.xyz.domain.enumeration.GoodsType;
 
 /**
@@ -23,6 +25,7 @@ public class GoodsDTO implements Serializable {
 
     private Integer deleted;
 
+    private Warehouse warehouse;
 
     private Long warehouseId;
 
@@ -36,6 +39,14 @@ public class GoodsDTO implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 
     public void setName(String name) {
@@ -114,14 +125,15 @@ public class GoodsDTO implements Serializable {
     @Override
     public String toString() {
         return "GoodsDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", sku=" + getSku() +
-            ", type='" + getType() + "'" +
-            ", gmtCreate='" + getGmtCreate() + "'" +
-            ", gmtModified='" + getGmtModified() + "'" +
-            ", deleted=" + getDeleted() +
-            ", warehouse=" + getWarehouseId() +
-            "}";
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", sku=" + sku +
+            ", type=" + type +
+            ", gmtCreate=" + gmtCreate +
+            ", gmtModified=" + gmtModified +
+            ", deleted=" + deleted +
+            ", warehouse=" + warehouse +
+            ", warehouseId=" + warehouseId +
+            '}';
     }
 }

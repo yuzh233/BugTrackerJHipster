@@ -1,9 +1,10 @@
 package bugtracker.yuzh.xyz.web.rest;
 
+import bugtracker.yuzh.xyz.security.AuthoritiesConstants;
+import bugtracker.yuzh.xyz.security.SecurityUtils;
 import bugtracker.yuzh.xyz.service.WarehouseService;
-import bugtracker.yuzh.xyz.web.rest.errors.BadRequestAlertException;
 import bugtracker.yuzh.xyz.service.dto.WarehouseDTO;
-
+import bugtracker.yuzh.xyz.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -13,15 +14,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -58,6 +58,8 @@ public class WarehouseResource {
         if (warehouseDTO.getId() != null) {
             throw new BadRequestAlertException("A new warehouse cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        String login = SecurityUtils.getCurrentUserLogin().orElse(null);
+        warehouseDTO.setOwner(login);
         WarehouseDTO result = warehouseService.save(warehouseDTO);
         return ResponseEntity.created(new URI("/api/warehouses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -88,9 +90,9 @@ public class WarehouseResource {
     /**
      * {@code GET  /warehouses} : get all the warehouses.
      *
-     * @param pageable the pagination information.
+     * @param pageable    the pagination information.
      * @param queryParams a {@link MultiValueMap} query parameters.
-     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
+     * @param uriBuilder  a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of warehouses in body.
      */
     @GetMapping("/warehouses")
@@ -121,6 +123,7 @@ public class WarehouseResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/warehouses/{id}")
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Void> deleteWarehouse(@PathVariable Long id) {
         log.debug("REST request to delete Warehouse : {}", id);
         warehouseService.delete(id);
