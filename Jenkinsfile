@@ -22,6 +22,11 @@ pipeline {
                     }
                 }
 
+                sh 'yum install -y gcc-c++ make \
+                    && curl -sL https://rpm.nodesource.com/setup_12.x | bash - \
+                    && yum -y install nodejs \
+                    && node -v'
+                sh 'java -version'
                 sh 'mvn --version'
                 sh 'pwd'
                 sh 'mvn package -DMaven.test.skip=true'
@@ -38,6 +43,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
+                sh 'java -jar ./target/bug-tracker-j-hipster-0.0.1-SNAPSHOT.jar'
             }
         }
     }
