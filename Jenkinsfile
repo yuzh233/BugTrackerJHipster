@@ -1,5 +1,10 @@
 pipeline {
-    agent { docker 'maven:3.3.3' }
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /Users/Harry/.m2:/root/.m2'
+        }
+    }
     stages {
         stage('build') {
             steps {
@@ -18,6 +23,7 @@ pipeline {
                 }
 
                 sh 'mvn --version'
+                sh 'pwd'
                 sh 'mvn package -DMaven.test.skip=true'
                 sh 'echo "hello Jenkins!"'
             }
@@ -28,7 +34,6 @@ pipeline {
                 echo 'Testing'
             }
         }
-
 
         stage('Deploy') {
             steps {
