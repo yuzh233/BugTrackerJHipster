@@ -14,7 +14,7 @@ pipeline{
         stage("Deploy") {
             steps{
                 sh 'echo "---------- 应用即将启动 ----------"'
-                sh 'java -jar ./target/bug-tracker-j-hipster-0.0.1-SNAPSHOT.jar'
+                sh './start.sh'
             }
         }
     }
