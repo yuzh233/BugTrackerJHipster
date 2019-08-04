@@ -22,10 +22,13 @@ pipeline {
                     }
                 }
 
-                sh 'yum install -y gcc-c++ make \
-                    && curl -sL https://rpm.nodesource.com/setup_12.x | bash - \
-                    && yum -y install nodejs \
-                    && node -v'
+                sh 'apt-get update'
+                sh 'apt-get install curl'
+                sh 'curl -sL https://deb.nodesource.com/setup_4.x | bash'
+                sh 'apt-get install nodejs'
+                sh 'node -v'
+                sh 'npm -v'
+
                 sh 'java -version'
                 sh 'mvn --version'
                 sh 'pwd'
